@@ -22,5 +22,4 @@ The design was created using PlantUML with an AWS Orange theme for better visual
 
 ## Steps to Replicate the Architecture
 1. Clone this repository:
-   ```bash
-  https://github.com/Nikhilsingh2003/SWE_DevOps.git
+   ```bash  https://github.com/Nikhilsingh2003/SWE_DevOps.git
