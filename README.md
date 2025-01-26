@@ -25,7 +25,8 @@ The design was created using PlantUML with an AWS Orange theme for better visual
 1. **Clone this repository**:  
    ```bash
    git clone https://github.com/Nikhilsingh2003/SWE_DevOps.git
-   2. **Install PlantUML** or use an online editor like [PlantUML Editor](https://plantuml-editor.kkeisuke.dev/).
+  
+ 2. **Install PlantUML** or use an online editor like [PlantUML Editor](https://plantuml-editor.kkeisuke.dev/).
 
 3. **Use the provided PlantUML code to generate the diagram**:  
    - Open your PlantUML tool or editor.  
