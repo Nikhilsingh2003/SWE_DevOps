@@ -1,0 +1,56 @@
+@startuml
+!theme aws-orange
+skinparam defaultFontSize 20  
+skinparam packageTitleFontSize 24  
+skinparam componentFontSize 20  
+skinparam componentSpacing 40  
+skinparam monochrome true  
+skinparam usecaseFontColor black  
+skinparam componentFontColor black  
+skinparam packageTitleFontColor black  
+
+actor "Web Client" as Web
+actor "Mobile Client" as Mobile
+
+package "API Layer" {
+  [API Gateway] --> [Load Balancer]
+}
+
+package "Load Balancing & Application Layer" {
+  [Load Balancer] --> [EC2 - HR Server]
+  [Load Balancer] --> [EC2 - Inventory Server]
+  [Load Balancer] --> [EC2 - Billing Server]
+  [Load Balancer] --> [EC2 - Lab Server]
+  [Load Balancer] --> [EC2 - Patient Records Server]
+}
+
+package "Database Layer" {  
+  [RDS - Database Cluster] --> [RDS - HR Database]  
+  [RDS - Database Cluster] --> [RDS - Inventory Database]  
+  [RDS - Database Cluster] --> [RDS - Billing Database]  
+  [RDS - Database Cluster] --> [RDS - Lab Database]  
+  [RDS - Database Cluster] --> [RDS - Patient Records Database]  
+  [RDS - Database Cluster] --> [RDS - Read Replica]  
+}  
+
+package "Caching Layer" {  
+  [ElastiCache - Redis Cache] --> [RDS - HR Database]  
+  [ElastiCache - Redis Cache] --> [RDS - Inventory Database]  
+  [ElastiCache - Redis Cache] --> [RDS - Billing Database]  
+  [ElastiCache - Redis Cache] --> [RDS - Lab Database]  
+  [ElastiCache - Redis Cache] --> [RDS - Patient Records Database]  
+}  
+
+package "Monitoring & Logging" {  
+  [CloudWatch] --> [RDS - Database Cluster]  
+  [CloudWatch] --> [ElastiCache - Redis Cache]  
+}  
+
+package "CDN Layer" {  
+  [CloudFront - CDN] --> [ElastiCache - Redis Cache]  
+  [CloudFront - CDN] --> [RDS - Database Cluster]  
+}
+
+Web --> [API Gateway]
+Mobile --> [API Gateway]
+@enduml
